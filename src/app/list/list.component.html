@@ -1,0 +1,41 @@
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h1>Todo List</h1>
+    </div>
+    <br>
+    <div class="panel-body">
+        <div class="input-group">
+            <input type="text" class="form-control mb-4" name="text" [(ngModel)]="query" id="listSearch">&nbsp;
+            <span class="input-group-btn"> 
+                <button (click)="clearSearch()" class="btn btn-primary">Clear</button>
+            </span>
+            
+        </div>
+        <div class="table-responsive">
+            <table class="table table-striped table-bordered table-responsive">
+                <thead>
+                    <tr>
+                        <!-- <th [appSort]="employees" data-order="desc" data-name="name" scope="col" style="cursor: pointer;">Task</th> -->
+                        <th>Index</th>
+                        <th  [appSort]="taskList" data-order="desc" data-name="state" scope="col" style="cursor: pointer;">Task</th>
+                        <th>State</th>
+                        <th>Actions</th>
+                       
+                     
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let task of taskList| search: query;let i=index;" [ngStyle]="{'background-color': (task.state == 'Finished') ? 'green' : 'white'}">
+                        <td>{{i+1}}</td>
+                        <td>{{task.task}}</td>
+                        <td><a (click)="toggleState(task.id,task.state)" style="cursor: pointer; color:red;">{{task.state}}</a></td>
+                       
+                        <td><a (click)="deletetask(task.id)" style="cursor: pointer; color:red;"><i class="fa fa-trash"></i></a> &nbsp;&nbsp;&nbsp;
+                            </td>
+                    </tr>
+                </tbody>
+            
+            </table>
+        </div>
+    </div>
+</div>
