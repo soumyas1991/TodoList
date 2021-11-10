@@ -54,6 +54,7 @@ export class AddComponent implements OnInit {
       const oldRecords = localStorage.getItem('taskList');
       this.taskObj.id = latestTaskId;
 
+      
       if(oldRecords !== null)
       {
         const taskList = JSON.parse(oldRecords);
